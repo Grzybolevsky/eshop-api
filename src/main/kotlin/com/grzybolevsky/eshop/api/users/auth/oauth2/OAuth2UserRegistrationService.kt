@@ -1,12 +1,10 @@
 package com.grzybolevsky.eshop.api.users.auth.oauth2
 
-import com.grzybolevsky.eshop.api.baskets.Basket
-import com.grzybolevsky.eshop.api.baskets.BasketRepository
 import com.grzybolevsky.eshop.api.users.User
 import com.grzybolevsky.eshop.api.users.UserDetailsRepository
 import com.grzybolevsky.eshop.api.users.UserRepository
-import com.grzybolevsky.eshop.api.users.identity.IdentityService
 import com.grzybolevsky.eshop.api.users.auth.oauth2.info.getGithubUserEmail
+import com.grzybolevsky.eshop.api.users.auth.identity.IdentityService
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
 import org.springframework.security.oauth2.core.user.OAuth2User
@@ -17,7 +15,6 @@ import javax.transaction.Transactional
 class OAuth2UserRegistrationService(
     private val userRepository: UserRepository,
     private val userDetailsRepository: UserDetailsRepository,
-    private val basketRepository: BasketRepository,
     private val identityService: IdentityService
 ) : DefaultOAuth2UserService() {
     override fun loadUser(userRequest: OAuth2UserRequest?): OAuth2User {
@@ -34,7 +31,7 @@ class OAuth2UserRegistrationService(
         }
         if (!userRepository.existsByEmail(email)) {
             registerNewUser(email)
-        } else {
+        } else if (identityService.isNotSet) {
             identityService.setUser(userRepository.findByEmail(email)!!)
         }
     }
@@ -42,10 +39,8 @@ class OAuth2UserRegistrationService(
     @Transactional
     fun registerNewUser(userEmail: String) {
         val user = User(userEmail)
-        val basket = Basket(user)
         userDetailsRepository.save(user.details)
         userRepository.save(user)
         identityService.setUser(user)
-        basketRepository.save(basket)
     }
 }

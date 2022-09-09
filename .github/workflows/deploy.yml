@@ -1,9 +1,9 @@
 name: CI/CD pipeline
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-java@v3.5.0
         with:
           java-version: "18"
-          distribution: "coretto"
+          distribution: "temurin"
           cache: "gradle"
       - name: Test
         uses: gradle/gradle-build-action@v2.3.0

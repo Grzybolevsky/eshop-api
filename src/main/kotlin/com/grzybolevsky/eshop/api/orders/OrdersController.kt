@@ -16,5 +16,8 @@ class OrdersController(private val orderService: OrderService) {
     fun getOrders(): List<OrderView> = orderService.getOrders()
 
     @PostMapping
-    fun createOrder(@RequestBody orderView: OrderView): OrderView = orderService.createOrUpdateOrder(orderView)
+    fun createOrder(): OrderView = orderService.createOrder()
+
+    @GetMapping("/{orderId}/items")
+    fun getOrderItems(@PathVariable orderId: Long): List<OrderItemView> = orderService.getOrderItems(orderId)
 }

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*
 class BasketsController(private val basketService: BasketService) {
 
     @GetMapping
-    fun getBasket(): BasketView = basketService.getBasket()
+    fun getBasket(): List<BasketProductView> = basketService.getBasket()
 
-    @PostMapping
-    @PutMapping
-    fun updateBasket(@RequestBody basketView: BasketView): BasketView {
-        return basketService.update(basketView)
-    }
+    @PostMapping("/{productId}")
+    fun addProductToBasket(@PathVariable productId: Long) = basketService.addProductToBasket(productId)
 
     @DeleteMapping
-    fun emptyBasket(): BasketView = basketService.empty()
+    fun emptyBasket(): List<BasketProductView> = basketService.empty()
+
+    @DeleteMapping("/{productId}")
+    fun deleteProductFromBasket(@PathVariable productId: Long): BasketProductView = basketService.removeProductFromBasket(productId)
 }

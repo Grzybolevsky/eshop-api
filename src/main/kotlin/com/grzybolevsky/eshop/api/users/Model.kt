@@ -30,3 +30,18 @@ class UserDetails(
 )
 
 fun UserDetails.toView() = UserDetailsView(firstName, secondName, address, city, country, postCode, phone)
+
+data class UserView(
+    val email: String,
+    val userDetails: UserDetailsView
+)
+
+data class UserDetailsView(
+    val firstName: String,
+    val secondName: String,
+    val address: String,
+    val city: String,
+    val country: String,
+    val postCode: String,
+    val phone: String
+)
