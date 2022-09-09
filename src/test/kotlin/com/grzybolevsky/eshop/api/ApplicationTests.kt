@@ -1,4 +1,4 @@
-package com.grzybolevsky.eshop
+package com.grzybolevsky.eshop.api
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

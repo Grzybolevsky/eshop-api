@@ -6,10 +6,6 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test
   build:
     runs-on: ubuntu-latest
     steps:
@@ -21,6 +17,11 @@ jobs:
           java-version: "18"
           distribution: "coretto"
           cache: "gradle"
+      - name: Test
+        uses: gradle/gradle-build-action@v2.3.0
+        with:
+          arguments: test
+          gradle-version: 7.5.1
       - name: Build Docker Image with Gradle/Jib
         uses: gradle/gradle-build-action@v2.3.0
         with:
