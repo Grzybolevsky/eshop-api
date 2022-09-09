@@ -1,29 +1,20 @@
 package com.grzybolevsky.eshop.api.baskets
 
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/basket")
 class BasketsController(private val basketService: BasketService) {
 
     @GetMapping
-    fun getBasket() {
-
-    }
+    fun getBasket(): BasketView = basketService.getBasket()
 
     @PostMapping
     @PutMapping
-    fun updateBasket() {
-
+    fun updateBasket(@RequestBody basketView: BasketView): BasketView {
+        return basketService.update(basketView)
     }
 
     @DeleteMapping
-    fun emptyBasket() {
-
-    }
+    fun emptyBasket(): BasketView = basketService.empty()
 }

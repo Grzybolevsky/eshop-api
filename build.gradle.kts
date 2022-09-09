@@ -16,6 +16,7 @@ plugins {
     kotlin("plugin.spring") version "1.7.20-RC"
     kotlin("plugin.jpa") version "1.7.20-RC"
     kotlin("plugin.allopen") version "1.7.20-RC"
+    kotlin("plugin.serialization") version "1.7.20-RC"
 }
 
 group = "com.grzybolevsky"

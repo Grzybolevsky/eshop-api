@@ -12,17 +12,17 @@ class Product(
     var price: BigDecimal,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var productId: Long? = null
+    var id: Long? = null
 )
 
-fun Product.toView() = ProductView(name, category, description, price, productId)
+fun Product.toView() = ProductView(name, category, description, price, id)
 
 class ProductView(
     var name: String,
     var category: String,
     var description: String,
     var price: BigDecimal,
-    var productId: Long?
+    var id: Long?
 )
 
-fun ProductView.toEntity() = Product(name, category, description, price, productId)
+fun ProductView.toEntity() = Product(name, category, description, price, id)

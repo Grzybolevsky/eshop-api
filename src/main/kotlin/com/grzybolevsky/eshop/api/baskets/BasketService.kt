@@ -1,11 +1,21 @@
 package com.grzybolevsky.eshop.api.baskets
 
+import com.grzybolevsky.eshop.api.users.identity.IdentityService
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
-class BasketService(private val repository: BasketRepository) {
-    fun getBasket(basketId: Long): Optional<Basket> = repository.findById(basketId)
+class BasketService(private val repository: BasketRepository,
+                    private val basketProductRepository: BasketProductRepository,
+                    private val identityService: IdentityService) {
+    fun getBasket(): BasketView = findUserBasket().toView()
 
-    fun create(basketView: BasketView): Basket = repository.save(basketView.toEntity())
+    fun update(basketView: BasketView): BasketView = repository.save(basketView.toEntity(identityService.getUser())).toView()
+
+    fun empty(): BasketView {
+        val basket = findUserBasket()
+        basketProductRepository.deleteAll(basket.basketProducts)
+        return repository.save(basket).toView()
+    }
+
+    private fun findUserBasket() = repository.findByUserId(identityService.getUser().id!!)
 }

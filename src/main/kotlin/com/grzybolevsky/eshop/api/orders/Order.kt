@@ -4,6 +4,7 @@ import com.grzybolevsky.eshop.api.baskets.Basket
 import com.grzybolevsky.eshop.api.baskets.BasketView
 import com.grzybolevsky.eshop.api.baskets.toEntity
 import com.grzybolevsky.eshop.api.baskets.toView
+import com.grzybolevsky.eshop.api.users.User
 import java.time.Instant
 import javax.persistence.*
 
@@ -15,14 +16,19 @@ class Order(
     var createdAt: Instant = Instant.now(),
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var orderId: Long? = null
+    var id: Long? = null
 )
 
-fun Order.toView() = OrderView(basket.toView(), createdAt)
+class OrderItem(
+
+)
+
+fun Order.toView() = OrderView(basket.toView(), createdAt, id)
 
 class OrderView(
     var basketView: BasketView,
-    var createdAt: Instant
+    var createdAt: Instant,
+    var id: Long?
 )
 
-fun OrderView.toEntity() = Order(basketView.toEntity(), createdAt)
+fun OrderView.toEntity(user: User) = Order(basketView.toEntity(user), createdAt, id)

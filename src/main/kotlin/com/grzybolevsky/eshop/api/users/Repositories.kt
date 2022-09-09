@@ -1,13 +1,14 @@
 package com.grzybolevsky.eshop.api.users
 
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserRepository : CrudRepository<User, Long> {
+interface UserRepository : JpaRepository<User, Long> {
     fun findByEmail(email: String): User?
     fun existsByEmail(email: String): Boolean
+    fun findUserById(id: Long): User?
 }
 
 @Repository
-interface ClientRepository : CrudRepository<Client, Long>
+interface UserDetailsRepository : JpaRepository<UserDetails, Long>

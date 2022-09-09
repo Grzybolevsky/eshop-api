@@ -4,10 +4,11 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService(private val userRepository: UserRepository) {
+    fun findUserById(id: Long): User? {
+        return userRepository.findUserById(id)
+    }
 
-}
-
-@Service
-class ClientService(private val clientRepository: ClientRepository) {
-
+    fun findUserByEmail(email: String): User? {
+        return userRepository.findByEmail(email)
+    }
 }

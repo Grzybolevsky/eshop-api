@@ -12,6 +12,7 @@ kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 kotlin-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.4.0" }
+kotlin-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.4.0" }
 postgres = { module = "org.postgresql:postgresql", version = "42.5.0" }
 spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
 spring-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
@@ -34,7 +35,8 @@ kotlin = [
     "kotlin-reflect",
     "kotlin-stdlib",
     "kotlin-collections",
-    "kotlin-datetime"
+    "kotlin-datetime",
+    "kotlin-json"
 ]
 spring = [
     "spring-actuator",

@@ -20,25 +20,29 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
     fun configure(http: HttpSecurity): SecurityFilterChain {
         http {
             //cors { }
+            csrf { disable() }
             authorizeRequests {
-                authorize("/", permitAll)
-                authorize("/products", permitAll)
-                authorize("/auth/**", permitAll)
+//                authorize("/", permitAll)
+//                authorize("/products", permitAll)
+//                authorize("/auth/login/**", permitAll)
+//                authorize("/oauth2/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
             exceptionHandling {
                 //    authenticationEntryPoint = HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)
             }
             logout {
+                logoutUrl = "/auth/logout"
                 logoutSuccessUrl = "/"
                 invalidateHttpSession = true
                 deleteCookies("JSESSIONID")
             }
             oauth2Login {
-                loginPage = "/auth/login"
+              //  loginPage = "/auth/login"
                 userInfoEndpoint {
                     userService = oAuth2UserRegistrationService
                 }
+                authenticationSuccessHandler
             }
         }
         return http.build()

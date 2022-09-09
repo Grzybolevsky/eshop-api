@@ -36,7 +36,20 @@ spring:
             scope:
               - email
               - public_profile
+          discord:
+            client-id: ${DISCORD_CLIENT_ID}
+            client-secret: ${DISCORD_CLIENT_SECRET}
+            authorization-grant-type: authorization_code
+            redirectUri: "{baseUrl}/login/oauth2/code/discord"
+            scope:
+              - identify
+              - email
         provider:
           instagram:
             authorization-uri: https://api.instagram.com/oauth/authorize
             token-uri: https://api.instagram.com/oauth/access_token
+          discord:
+            authorization-uri: https://discord.com/oauth2/authorize
+            token-uri: https://discord.com/api/oauth2/token
+            user-info-uri: https://discord.com/api/users/@me
+            user-name-attribute: username
