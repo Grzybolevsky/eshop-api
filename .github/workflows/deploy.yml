@@ -1,0 +1,28 @@
+name: CI/CD pipeline
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.0.2
+      - name: Set up JDK
+        uses: actions/setup-java@v3.5.0
+        with:
+          java-version: "18"
+          distribution: "coretto"
+          cache: "gradle"
+      - name: Build Docker Image with Gradle/Jib
+        uses: gradle/gradle-build-action@v2.3.0
+        with:
+          arguments: jib --image=grzybolevsky/eshop-api
+          gradle-version: 7.5.1

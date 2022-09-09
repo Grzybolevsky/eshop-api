@@ -1,4 +1,9 @@
 package com.grzybolevsky.eshop.api.orders
 
-class OrderRepository {
+import org.springframework.data.repository.CrudRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface OrderRepository : CrudRepository<Order, Long> {
+    fun findOrderByOrderId(orderId: Long): Order?
 }

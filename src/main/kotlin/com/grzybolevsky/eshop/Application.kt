@@ -4,8 +4,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class EshopApplication
+class Application
 
 fun main(args: Array<String>) {
-    runApplication<EshopApplication>(*args)
+    @Suppress("SpreadOperator")
+    runApplication<Application>(*args)
 }

@@ -1,0 +1,55 @@
+[versions]
+arrow = "1.1.2"
+
+[libraries]
+arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
+arrow-optics = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
+collections = { module = "org.eclipse.collections:eclipse-collections", version = "11.1.0" }
+h2 = { module = "com.h2database:h2", version = "2.1.214" }
+junit = { module = "org.junit.jupiter:junit-jupiter-api", version = "5.9.0" }
+kotlin-jackson = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
+kotlin-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.4.0" }
+postgres = { module = "org.postgresql:postgresql", version = "42.5.0" }
+spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
+spring-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-mail = { module = "org.springframework.boot:spring-boot-starter-mail" }
+spring-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+spring-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-security-data = { module = "org.springframework.security:spring-security-data" }
+spring-oauth = { module = "org.springframework.boot:spring-boot-starter-oauth2-client" }
+spring-test-cloud = { module = "org.springframework.cloud:spring-cloud-starter-contract-verifier" }
+spring-test-security = { module = "org.springframework.security:spring-security-test" }
+spring-test-starter = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+springdoc = { module = "org.springdoc:springdoc-openapi-ui", version = "1.6.11" }
+testcontainers = { module = "org.testcontainers:junit-jupiter" }
+
+[bundles]
+kotlin = [
+    "kotlin-jackson",
+    "kotlin-reflect",
+    "kotlin-stdlib",
+    "kotlin-collections",
+    "kotlin-datetime"
+]
+spring = [
+    "spring-actuator",
+    "spring-jpa",
+    "spring-mail",
+    "spring-web",
+    "spring-security",
+    "spring-oauth",
+    "spring-security-data",
+]
+test = [
+    "junit",
+    "spring-test-cloud",
+    "spring-test-security",
+    "spring-test-starter",
+    "testcontainers",
+]
+util = ["collections"]

@@ -1,4 +1,7 @@
 package com.grzybolevsky.eshop.api.products
 
-interface ProductRepository {
+import org.springframework.data.repository.CrudRepository
+
+interface ProductRepository: CrudRepository<Product, Long> {
+    fun findByProductId(productId: Long): Product?
 }

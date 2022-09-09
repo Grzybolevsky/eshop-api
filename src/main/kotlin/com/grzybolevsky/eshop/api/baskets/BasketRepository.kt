@@ -1,4 +1,7 @@
 package com.grzybolevsky.eshop.api.baskets
 
-class BasketRepository {
-}
+import org.springframework.data.repository.CrudRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface BasketRepository : CrudRepository<Basket, Long>

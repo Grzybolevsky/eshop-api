@@ -1,1 +1,42 @@
-
+server:
+  servlet:
+    contextPath: /api
+spring:
+  jmx:
+    enabled: false
+  jpa:
+    open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            scope:
+              - user:email
+              - read:user
+          facebook:
+            client-id: ${FB_CLIENT_ID}
+            client-secret: ${FB_CLIENT_SECRET}
+            scope:
+              - email
+              - public_profile
+          instagram:
+            client-id: ${INSTAGRAM_CLIENT_ID}
+            client-secret: ${INSTAGRAM_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            authorization-grant-type: authorization_code
+            scope:
+              - email
+              - public_profile
+        provider:
+          instagram:
+            authorization-uri: https://api.instagram.com/oauth/authorize
+            token-uri: https://api.instagram.com/oauth/access_token

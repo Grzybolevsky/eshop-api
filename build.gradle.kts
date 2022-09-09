@@ -1,17 +1,31 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val javaVersion: String by project
+
 plugins {
     id("org.springframework.boot") version "2.7.3"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
-    id("org.asciidoctor.convert") version "1.5.8"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    id("com.github.ben-manes.versions") version "0.42.0"
+    id("nl.littlerobots.version-catalog-update") version "0.6.1"
+    id("com.diffplug.spotless") version "6.10.0"
+    id("io.gitlab.arturbosch.detekt") version "1.21.0"
+    id("com.google.cloud.tools.jib") version "3.3.0"
+    id("com.google.devtools.ksp") version "1.7.20-Beta-1.0.6"
+    id("com.bnorm.power.kotlin-power-assert") version "0.12.0"
+    kotlin("jvm") version "1.7.20-RC"
+    kotlin("plugin.spring") version "1.7.20-RC"
+    kotlin("plugin.jpa") version "1.7.20-RC"
+    kotlin("plugin.allopen") version "1.7.20-RC"
 }
 
 group = "com.grzybolevsky"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+    }
+}
 
 configurations {
     compileOnly {
@@ -23,45 +37,40 @@ repositories {
     mavenCentral()
 }
 
-extra["snippetsDir"] = file("build/generated-snippets")
-extra["springCloudAzureVersion"] = "4.3.0"
-extra["springCloudVersion"] = "2021.0.3"
-extra["testcontainersVersion"] = "1.17.3"
+val snippetsDir by extra { file("build/generated-snippets") }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-mail")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.azure.spring:spring-cloud-azure-starter")
-    implementation("com.azure.spring:spring-cloud-azure-starter-actuator")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier")
-    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-    testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("org.testcontainers:junit-jupiter")
+    implementation(libs.arrow.core)
+    implementation(libs.bundles.kotlin)
+    implementation(libs.bundles.spring)
+    implementation(libs.bundles.util)
+    implementation(libs.postgres)
+    implementation(libs.springdoc)
+    ksp(libs.arrow.optics)
+
+    testImplementation(libs.bundles.test) {
+        exclude(module = "junit")
+        exclude(group = "org.mockito")
+    }
+    testImplementation(libs.h2)
+
+    annotationProcessor(libs.spring.processor)
+    developmentOnly(libs.spring.devtools)
+    developmentOnly(libs.h2)
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
-        mavenBom("com.azure.spring:spring-cloud-azure-dependencies:${property("springCloudAzureVersion")}")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        mavenBom("org.testcontainers:testcontainers-bom:1.17.3")
+        mavenBom("com.azure.spring:spring-cloud-azure-dependencies:4.3.0")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2021.0.3")
     }
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+        jvmTarget = javaVersion
     }
 }
 
@@ -73,7 +82,39 @@ tasks.test {
     outputs.dir(snippetsDir)
 }
 
-tasks.asciidoctor {
-    inputs.dir(snippetsDir)
-    dependsOn(test)
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = javaVersion
+}
+
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = javaVersion
+}
+
+jib {
+    from {
+        image = "eclipse-temurin:18.0.2.1_1-jre"
+    }
+}
+
+spotless {
+    kotlin {
+        ktlint()
+    }
+}
+
+kotlin {
+    sourceSets.main {
+        kotlin.srcDir("build/generated/ksp/main/kotlin")
+    }
+    sourceSets.test {
+        kotlin.srcDir("build/generated/ksp/test/kotlin")
+    }
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.Embeddable")
+    annotation("javax.persistence.MappedSuperclass")
 }
