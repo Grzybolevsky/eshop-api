@@ -10,7 +10,7 @@ plugins {
     id("com.diffplug.spotless") version "6.10.0"
     id("io.gitlab.arturbosch.detekt") version "1.21.0"
     id("com.google.cloud.tools.jib") version "3.3.0"
-    id("com.google.devtools.ksp") version "1.7.20-Beta-1.0.6"
+    id("com.google.devtools.ksp") version "1.7.20-RC-1.0.6"
     id("com.bnorm.power.kotlin-power-assert") version "0.12.0"
     kotlin("jvm") version "1.7.20-RC"
     kotlin("plugin.spring") version "1.7.20-RC"
@@ -95,7 +95,7 @@ compileTestKotlin.kotlinOptions {
 
 jib {
     from {
-        image = "eclipse-temurin:18.0.2.1_1-jre"
+        image = "eclipse-temurin:18.0.2.1_1-jre-jammy"
     }
 }
 
