@@ -46,16 +46,6 @@ jobs:
         run: |
           docker push grzybolevsky/eshop-api:${{ github.sha }}
 
-  #      - name: Set up Docker Buildx
-  #        uses: docker/setup-buildx-action@v2.2.3
-  #
-  #      - name: Build and push container image to registry
-  #        uses: docker/build-push-action@v3.1.1
-  #        with:
-  #          push: true
-  #          tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2a9cc39d179c40c8a82555812d4a7da7 }}/grzybolevsky/eshop-api:${{ github.sha }}
-  #          file: ./Dockerfile
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
