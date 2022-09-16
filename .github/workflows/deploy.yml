@@ -58,4 +58,4 @@ jobs:
           app-name: 'ebusiness-eshop-api'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_f3669a1bc3bb44859845d5885eef38d8 }}
-          images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2a9cc39d179c40c8a82555812d4a7da7 }}/grzybolevsky/eshop-api:${{ github.sha }}'
+          images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_2a9cc39d179c40c8a82555812d4a7da7 }}/eshop-api:${{ github.sha }}'
