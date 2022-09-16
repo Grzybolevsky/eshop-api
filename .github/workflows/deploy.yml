@@ -40,7 +40,7 @@ jobs:
       - name: Build Docker Image with Gradle/Jib
         uses: gradle/gradle-build-action@v2.3.0
         with:
-          arguments: jib --image=grzybolevsky/eshop-api:${{ github.sha }}
+          arguments: jib --image=${{ secrets.AzureAppService_ContainerUsername_2a9cc39d179c40c8a82555812d4a7da7 }}/eshop-api:${{ github.sha }}
           gradle-version: 7.5.1
 
   deploy:
