@@ -23,6 +23,7 @@ jobs:
           java-version: "18"
           distribution: "temurin"
           cache: "gradle"
+
       - name: Test
         uses: gradle/gradle-build-action@v2.3.0
         with:
@@ -41,10 +42,6 @@ jobs:
         with:
           arguments: jib --image=grzybolevsky/eshop-api:${{ github.sha }}
           gradle-version: 7.5.1
-
-      - name: Push
-        run: |
-          docker push grzybolevsky/eshop-api:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
