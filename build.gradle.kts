@@ -97,6 +97,10 @@ jib {
     from {
         image = "eclipse-temurin:18.0.2.1_1-jre-jammy"
     }
+    container {
+        mainClass = "com.grzybolevsky.eshop.ApplicationKt"
+        ports = listOf("8080")
+    }
 }
 
 spotless {
