@@ -1,6 +1,3 @@
-server:
-  servlet:
-    contextPath: /api
 spring:
   jmx:
     enabled: false
