@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.config.web.servlet.invoke
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension
 import org.springframework.security.web.SecurityFilterChain
@@ -19,17 +18,18 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
         http {
-            //cors { }
-            csrf { disable() }
+            // cors { }
+            csrf {
+                disable()
+            }
             authorizeRequests {
-//                authorize("/", permitAll)
-//                authorize("/products", permitAll)
-//                authorize("/auth/login/**", permitAll)
-//                authorize("/oauth2/**", permitAll)
+                authorize("/products", permitAll)
+                // authorize("/auth/login/**", permitAll)
+                // authorize("/oauth2/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
             exceptionHandling {
-                //    authenticationEntryPoint = HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)
+                // authenticationEntryPoint = HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)
             }
             logout {
                 logoutUrl = "/auth/logout"
@@ -38,7 +38,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
                 deleteCookies("JSESSIONID")
             }
             oauth2Login {
-              //  loginPage = "/auth/login"
+                // loginPage = "/auth/login"
                 userInfoEndpoint {
                     userService = oAuth2UserRegistrationService
                 }
@@ -47,8 +47,4 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
         }
         return http.build()
     }
-
-    @Bean
-    fun webSecurityCustomizer(): WebSecurityCustomizer =
-        WebSecurityCustomizer { it.ignoring().antMatchers("/h2-console/**") }
 }
