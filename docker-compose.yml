@@ -13,8 +13,11 @@ services:
     depends_on:
       - postgres
   postgres:
-    image: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
     environment:
+      - POSTGRES_DB=db
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
 volumes:
