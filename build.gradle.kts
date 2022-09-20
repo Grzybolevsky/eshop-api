@@ -8,7 +8,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.42.0"
     id("nl.littlerobots.version-catalog-update") version "0.6.1"
     id("com.diffplug.spotless") version "6.11.0"
-    id("io.gitlab.arturbosch.detekt") version "1.21.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0-RC1"
     id("com.google.cloud.tools.jib") version "3.3.0"
     id("com.google.devtools.ksp") version "1.7.20-RC-1.0.6"
     id("com.bnorm.power.kotlin-power-assert") version "0.12.0"
@@ -57,7 +57,6 @@ dependencies {
 
     annotationProcessor(libs.spring.processor)
     developmentOnly(libs.spring.devtools)
-    developmentOnly(libs.h2)
 }
 
 dependencyManagement {
