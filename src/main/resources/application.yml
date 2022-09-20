@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: security
   jmx:
     enabled: false
   jpa:
