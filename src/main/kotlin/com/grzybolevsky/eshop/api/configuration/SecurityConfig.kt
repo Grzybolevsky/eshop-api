@@ -1,6 +1,7 @@
 package com.grzybolevsky.eshop.api.configuration
 
 import com.grzybolevsky.eshop.api.users.auth.oauth2.OAuth2UserRegistrationService
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
@@ -12,13 +13,16 @@ import org.springframework.security.web.SecurityFilterChain
 @Profile("security")
 @Configuration
 class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegistrationService) {
+    @Value("\${CLIENT_URL:http://localhost:3000}")
+    private lateinit var clientUrl: String
+
     @Bean
     fun securityEvaluationContextExtension(): SecurityEvaluationContextExtension = SecurityEvaluationContextExtension()
 
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
         http {
-            // cors { }
+            cors {}
             csrf {
                 disable()
             }
@@ -33,7 +37,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
             }
             logout {
                 logoutUrl = "/auth/logout"
-                logoutSuccessUrl = "/"
+                logoutSuccessUrl = clientUrl
                 invalidateHttpSession = true
                 deleteCookies("JSESSIONID")
             }
@@ -42,7 +46,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
                 userInfoEndpoint {
                     userService = oAuth2UserRegistrationService
                 }
-                authenticationSuccessHandler
+                defaultSuccessUrl(clientUrl, true)
             }
         }
         return http.build()
