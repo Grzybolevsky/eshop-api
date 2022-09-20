@@ -28,12 +28,8 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
             }
             authorizeRequests {
                 authorize("/products", permitAll)
-                // authorize("/auth/login/**", permitAll)
-                // authorize("/oauth2/**", permitAll)
+                authorize("/user/logged", permitAll)
                 authorize(anyRequest, authenticated)
-            }
-            exceptionHandling {
-                // authenticationEntryPoint = HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)
             }
             logout {
                 logoutUrl = "/auth/logout"
@@ -42,7 +38,6 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
                 deleteCookies("JSESSIONID")
             }
             oauth2Login {
-                // loginPage = "/auth/login"
                 userInfoEndpoint {
                     userService = oAuth2UserRegistrationService
                 }

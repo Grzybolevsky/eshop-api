@@ -1,6 +1,7 @@
 package com.grzybolevsky.eshop.api.baskets
 
 import com.grzybolevsky.eshop.api.products.ProductService
+import com.grzybolevsky.eshop.api.products.toEntity
 import com.grzybolevsky.eshop.api.users.auth.identity.IdentityService
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -19,7 +20,7 @@ class BasketService(
 
     fun addProductToBasket(productId: Long): BasketProductView {
         val product = productService.getProduct(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
-        val basketProduct = BasketProduct(product, 1, identityService.getUser())
+        val basketProduct = BasketProduct(product.toEntity(), 1, identityService.getUser())
         return basketProductRepository.save(basketProduct).toView()
     }
 
