@@ -11,14 +11,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @Configuration
 @ComponentScan
 class RestConfig {
-    @Value("\${app.clientUrl}")
-    private lateinit var clientUrl: String
+    @Value("\${app.corsOrigins}")
+    private var corsOrigins: String = ""
 
     @Bean
     fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
-                registry.addMapping("/**").allowedOrigins(clientUrl)
+                val allowedOrigins = corsOrigins.split(",").toTypedArray()
+                registry.addMapping("/**")
+                    .allowedMethods("*")
+                    .allowedOriginPatterns(*allowedOrigins)
+                    .allowCredentials(true)
             }
         }
     }

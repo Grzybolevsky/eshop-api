@@ -1,5 +1,6 @@
 app:
   clientUrl: ${CLIENT_URL:http://localhost:3000}
+  corsOrigins: ${CORS_ORIGINS:default}
 spring:
   profiles:
     active: security
