@@ -1,3 +1,5 @@
+app:
+  clientUrl: ${CLIENT_URL:http://localhost:3000}
 spring:
   profiles:
     active: security

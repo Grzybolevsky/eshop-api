@@ -10,8 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
 @ComponentScan
-class RestConfiguration {
-    @Value("\${CLIENT_URL:http://localhost:3000}")
+class RestConfig {
+    @Value("\${app.clientUrl}")
     private lateinit var clientUrl: String
 
     @Bean
