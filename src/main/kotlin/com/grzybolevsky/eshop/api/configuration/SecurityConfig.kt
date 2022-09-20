@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain
 @Profile("security")
 @Configuration
 class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegistrationService) {
-    @Value("\${CLIENT_URL:http://localhost:3000}")
+    @Value("\${app.clientUrl}")
     private lateinit var clientUrl: String
 
     @Bean
