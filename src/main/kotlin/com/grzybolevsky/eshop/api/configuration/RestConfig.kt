@@ -21,6 +21,7 @@ class RestConfig {
                 val allowedOrigins = corsOrigins.split(",")
                 registry.addMapping("/**")
                     .allowedMethods("*")
+                    .allowedHeaders("*")
                     .allowedOriginPatterns(*allowedOrigins.toTypedArray())
                     .allowCredentials(true)
             }
