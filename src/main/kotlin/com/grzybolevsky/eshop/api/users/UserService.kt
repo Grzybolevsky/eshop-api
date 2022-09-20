@@ -9,7 +9,7 @@ class UserService(
     private val userDetailsRepository: UserDetailsRepository,
     private val identityService: IdentityService
 ) {
-    fun isLogged() = ! identityService.isNotSet
+    fun isLogged() = !identityService.isNotSet
 
     fun updateUserEmail(email: String): UserView {
         val userData = identityService.getUser()

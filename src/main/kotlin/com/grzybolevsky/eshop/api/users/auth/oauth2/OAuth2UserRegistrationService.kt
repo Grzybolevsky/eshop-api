@@ -3,8 +3,8 @@ package com.grzybolevsky.eshop.api.users.auth.oauth2
 import com.grzybolevsky.eshop.api.users.User
 import com.grzybolevsky.eshop.api.users.UserDetailsRepository
 import com.grzybolevsky.eshop.api.users.UserRepository
-import com.grzybolevsky.eshop.api.users.auth.oauth2.info.getGithubUserEmail
 import com.grzybolevsky.eshop.api.users.auth.identity.IdentityService
+import com.grzybolevsky.eshop.api.users.auth.oauth2.info.getGithubUserEmail
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
 import org.springframework.security.oauth2.core.user.OAuth2User
@@ -24,10 +24,13 @@ class OAuth2UserRegistrationService(
     }
 
     private fun processOAuthUser(user: OAuth2User, request: OAuth2UserRequest?) {
-        val email = if (user.attributes["email"] != null) user.attributes["email"].toString()
-        else when (request?.clientRegistration?.registrationId) {
-            "github" -> getGithubUserEmail(request)
-            else -> throw Exception()
+        val email = if (user.attributes["email"] != null) {
+            user.attributes["email"].toString()
+        } else {
+            when (request?.clientRegistration?.registrationId) {
+                "github" -> getGithubUserEmail(request)
+                else -> error("Cannot get email for Github user")
+            }
         }
         if (!userRepository.existsByEmail(email)) {
             registerNewUser(email)

@@ -4,4 +4,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PaymentsService {
+    fun getPayment() {
+        TODO()
+    }
 }

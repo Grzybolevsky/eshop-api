@@ -6,5 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("payments")
 class PaymentsController(private val paymentsService: PaymentsService) {
-
+    fun getPayment() {
+        paymentsService.getPayment()
+    }
 }

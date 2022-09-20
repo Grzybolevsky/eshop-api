@@ -10,6 +10,6 @@ interface OrderRepository : JpaRepository<Order, Long> {
 }
 
 @Repository
-interface OrderItemRepository: JpaRepository<OrderItem, Long> {
+interface OrderItemRepository : JpaRepository<OrderItem, Long> {
     fun findAllByOrderId(orderId: Long): List<OrderItem>
 }

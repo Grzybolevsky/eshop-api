@@ -13,8 +13,8 @@ import org.springframework.security.web.SecurityFilterChain
 @Profile("security")
 @Configuration
 class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegistrationService) {
-    @Value("\${app.clientUrl}")
-    private lateinit var clientUrl: String
+    @Value("\${app.clientUrl:}")
+    private val clientUrl: String = ""
 
     @Bean
     fun securityEvaluationContextExtension(): SecurityEvaluationContextExtension = SecurityEvaluationContextExtension()

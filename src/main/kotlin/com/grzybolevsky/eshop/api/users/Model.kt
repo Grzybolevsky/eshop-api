@@ -1,6 +1,10 @@
 package com.grzybolevsky.eshop.api.users
 
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.OneToOne
+import javax.persistence.Table
 
 @Entity
 @Table(name = "users")
@@ -16,6 +20,7 @@ class User(
 fun User.toView() = UserView(email, details.toView())
 
 @Entity
+@Suppress("LongParameterList")
 class UserDetails(
     var firstName: String = "",
     var secondName: String = "",

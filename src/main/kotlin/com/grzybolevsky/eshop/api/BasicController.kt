@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController("/")
 class BasicController {
+    private val greeting = "e-shop API"
 
     @GetMapping
-    fun appName(): String {
-        return "e-shop api"
-    }
+    fun appName() = greeting
 }

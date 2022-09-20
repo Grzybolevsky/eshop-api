@@ -7,21 +7,21 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-
 @Configuration
 @ComponentScan
 class RestConfig {
-    @Value("\${app.corsOrigins}")
-    private var corsOrigins: String = ""
+    @Value("\${app.corsOrigins:}")
+    private val corsOrigins: String = ""
 
     @Bean
+    @Suppress("SpreadOperator")
     fun corsConfigurer(): WebMvcConfigurer {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
-                val allowedOrigins = corsOrigins.split(",").toTypedArray()
+                val allowedOrigins = corsOrigins.split(",")
                 registry.addMapping("/**")
                     .allowedMethods("*")
-                    .allowedOriginPatterns(*allowedOrigins)
+                    .allowedOriginPatterns(*allowedOrigins.toTypedArray())
                     .allowCredentials(true)
             }
         }

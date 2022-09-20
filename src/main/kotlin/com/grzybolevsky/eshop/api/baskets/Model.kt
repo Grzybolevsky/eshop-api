@@ -5,7 +5,12 @@ import com.grzybolevsky.eshop.api.products.ProductView
 import com.grzybolevsky.eshop.api.products.toView
 import com.grzybolevsky.eshop.api.users.User
 import java.math.BigDecimal
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
 @Table(name = "basket_products")
