@@ -14,7 +14,7 @@ class IdentityService {
     fun getUser() = user
 
     fun setUser(user: User) {
-        check(this::user.isInitialized) { "Cannot initialize twice the same user." }
+        check(!this::user.isInitialized) { "Cannot initialize twice the same user." }
         this.user = user
         this.isSet = true
     }
