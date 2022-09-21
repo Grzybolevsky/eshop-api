@@ -1,4 +1,4 @@
-package com.grzybolevsky.eshop.api.configuration
+package com.grzybolevsky.eshop.api.security
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -15,16 +15,14 @@ class RestConfig {
 
     @Bean
     @Suppress("SpreadOperator")
-    fun corsConfigurer(): WebMvcConfigurer {
-        return object : WebMvcConfigurer {
-            override fun addCorsMappings(registry: CorsRegistry) {
-                val allowedOrigins = corsOrigins.split(",")
-                registry.addMapping("/**")
-                    .allowedMethods("*")
-                    .allowedHeaders("*")
-                    .allowedOriginPatterns(*allowedOrigins.toTypedArray())
-                    .allowCredentials(true)
-            }
+    fun corsConfigurer() = object : WebMvcConfigurer {
+        override fun addCorsMappings(registry: CorsRegistry) {
+            val allowedOrigins = corsOrigins.split(",")
+            registry.addMapping("/**")
+                .allowedMethods("*")
+                .allowedHeaders("*")
+                .allowedOriginPatterns(*allowedOrigins.toTypedArray())
+                .allowCredentials(true)
         }
     }
 }

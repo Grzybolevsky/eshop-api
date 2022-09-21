@@ -1,7 +1,7 @@
 package com.grzybolevsky.eshop.api.orders
 
 import com.grzybolevsky.eshop.api.baskets.BasketService
-import com.grzybolevsky.eshop.api.users.auth.identity.IdentityService
+import com.grzybolevsky.eshop.api.security.identity.IdentityService
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 

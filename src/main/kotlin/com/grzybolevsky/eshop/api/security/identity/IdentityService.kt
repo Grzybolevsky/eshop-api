@@ -1,4 +1,4 @@
-package com.grzybolevsky.eshop.api.users.auth.identity
+package com.grzybolevsky.eshop.api.security.identity
 
 import com.grzybolevsky.eshop.api.users.User
 import org.springframework.context.annotation.Scope

@@ -10,8 +10,6 @@ plugins {
     id("com.diffplug.spotless") version "6.11.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0-RC1"
     id("com.google.cloud.tools.jib") version "3.3.0"
-    id("com.google.devtools.ksp") version "1.7.20-RC-1.0.6"
-    id("com.bnorm.power.kotlin-power-assert") version "0.12.0"
     kotlin("jvm") version "1.7.20-RC"
     kotlin("plugin.spring") version "1.7.20-RC"
     kotlin("plugin.jpa") version "1.7.20-RC"
@@ -41,28 +39,24 @@ repositories {
 val snippetsDir by extra { file("build/generated-snippets") }
 
 dependencies {
-    implementation(libs.arrow.core)
-    implementation(libs.bundles.kotlin)
-    implementation(libs.bundles.spring)
-    implementation(libs.bundles.util)
     implementation(libs.postgres)
-    implementation(libs.springdoc)
-    ksp(libs.arrow.optics)
+    implementation(libs.bundles.kotlin)
+    implementation(libs.bundles.spring) { exclude(group = "org.apache.logging.log4j") }
 
+    testImplementation(libs.h2)
     testImplementation(libs.bundles.test) {
         exclude(module = "junit")
         exclude(group = "org.mockito")
+        exclude(group = "org.apache.logging.log4j")
     }
-    testImplementation(libs.h2)
 
+    developmentOnly(libs.spring.devtools) { exclude(group = "org.apache.logging.log4j") }
     annotationProcessor(libs.spring.processor)
-    developmentOnly(libs.spring.devtools)
 }
 
 dependencyManagement {
     imports {
         mavenBom("org.testcontainers:testcontainers-bom:1.17.3")
-        mavenBom("com.azure.spring:spring-cloud-azure-dependencies:4.3.0")
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:2021.0.4")
     }
 }
@@ -82,16 +76,6 @@ tasks.test {
     outputs.dir(snippetsDir)
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = javaVersion
-}
-
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = javaVersion
-}
-
 jib {
     from {
         image = "eclipse-temurin:18.0.2.1_1-jre-jammy"
@@ -105,15 +89,6 @@ jib {
 spotless {
     kotlin {
         ktlint()
-    }
-}
-
-kotlin {
-    sourceSets.main {
-        kotlin.srcDir("build/generated/ksp/main/kotlin")
-    }
-    sourceSets.test {
-        kotlin.srcDir("build/generated/ksp/test/kotlin")
     }
 }
 

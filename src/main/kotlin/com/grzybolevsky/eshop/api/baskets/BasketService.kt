@@ -2,7 +2,7 @@ package com.grzybolevsky.eshop.api.baskets
 
 import com.grzybolevsky.eshop.api.products.ProductService
 import com.grzybolevsky.eshop.api.products.toEntity
-import com.grzybolevsky.eshop.api.users.auth.identity.IdentityService
+import com.grzybolevsky.eshop.api.security.identity.IdentityService
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException

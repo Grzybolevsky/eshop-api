@@ -1,4 +1,4 @@
-package com.grzybolevsky.eshop.api.users.auth.oauth2.info
+package com.grzybolevsky.eshop.api.security.oauth2.info
 
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray

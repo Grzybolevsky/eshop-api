@@ -1,6 +1,6 @@
 package com.grzybolevsky.eshop.api.users
 
-import com.grzybolevsky.eshop.api.users.auth.identity.IdentityService
+import com.grzybolevsky.eshop.api.security.identity.IdentityService
 import org.springframework.stereotype.Service
 
 @Service
