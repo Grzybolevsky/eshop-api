@@ -4,6 +4,7 @@ server:
       cookie:
         same-site: none
         secure: true
+        http-only: true
 
 app:
   clientUrl: ${CLIENT_URL:http://localhost:3000}
