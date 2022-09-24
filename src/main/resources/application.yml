@@ -1,3 +1,10 @@
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: none
+        secure: true
+
 app:
   clientUrl: ${CLIENT_URL:http://localhost:3000}
   corsOrigins: ${CORS_ORIGINS:default}

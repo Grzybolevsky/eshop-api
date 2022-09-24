@@ -42,7 +42,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
                 userInfoEndpoint {
                     userService = oAuth2UserRegistrationService
                 }
-                defaultSuccessUrl("/auth/authorized", true)
+                defaultSuccessUrl(clientUrl, true)
             }
         }
         return http.build()
