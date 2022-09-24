@@ -28,6 +28,7 @@ class AuthController {
         val cookie = Cookie("JSESSIONID", request.getAttribute("JSESSIONID") as String?)
         cookie.domain = URI(clientUrl).host
         cookie.path = "/"
+        cookie.secure = false
         response.addCookie(cookie)
         response.setHeader("Location", clientUrl)
         response.status = 302
