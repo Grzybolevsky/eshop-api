@@ -29,6 +29,7 @@ class AuthController {
         cookie.domain = URI(clientUrl).host
         cookie.path = "/"
         cookie.secure = false
+        cookie.isHttpOnly = false
         response.addCookie(cookie)
         response.setHeader("Location", clientUrl)
         response.status = 302
