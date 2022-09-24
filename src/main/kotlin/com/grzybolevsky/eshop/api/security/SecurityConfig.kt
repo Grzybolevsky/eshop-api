@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.web.servlet.invoke
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.security.web.authentication.ForwardAuthenticationSuccessHandler
 
 @Profile("security")
 @Configuration
@@ -26,6 +25,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
             cors { }
             csrf {
                 disable()
+                //csrfTokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse()
             }
             authorizeRequests {
                 authorize("/products", permitAll)
@@ -42,7 +42,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
                 userInfoEndpoint {
                     userService = oAuth2UserRegistrationService
                 }
-                authenticationSuccessHandler = ForwardAuthenticationSuccessHandler(clientUrl)
+                defaultSuccessUrl("/auth/authorized", true)
             }
         }
         return http.build()
