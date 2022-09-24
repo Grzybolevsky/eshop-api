@@ -25,7 +25,7 @@ class AuthController {
 
     @GetMapping("/authorized")
     fun authorize(request: HttpServletRequest, response: HttpServletResponse) {
-        val cookie = Cookie("JSESSIONID", request.session.getAttribute("JSESSIONID") as String?)
+        val cookie = Cookie("JSESSIONID", request.getAttribute("JSESSIONID") as String?)
         cookie.domain = URI(clientUrl).host
         cookie.path = "/"
         response.addCookie(cookie)
