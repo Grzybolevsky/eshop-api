@@ -21,13 +21,14 @@ import javax.validation.constraints.Positive
 class Order(
     @OneToOne
     var user: User,
+    var isPaid: Boolean,
     var createdAt: Instant = Instant.now(),
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
 )
 
-fun Order.toView() = OrderView(createdAt, id)
+fun Order.toView() = OrderView(isPaid, createdAt, id)
 
 @Entity
 class OrderItem(
@@ -52,6 +53,7 @@ data class OrderItemView(
 )
 
 data class OrderView(
+    val isPaid: Boolean,
     val createdAt: Instant,
     val id: Long?
 )

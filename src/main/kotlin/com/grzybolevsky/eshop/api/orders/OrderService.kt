@@ -25,7 +25,7 @@ class OrderService(
 
     @Transactional
     fun createOrder(): OrderView {
-        val order = Order(identityService.getUser())
+        val order = Order(identityService.getUser(), false)
         orderRepository.save(order)
         val orderItems = basketService.getBasketRaw().map { OrderItem(order, it.product, it.quantity) }
         orderItemRepository.saveAll(orderItems)
