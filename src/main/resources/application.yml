@@ -48,10 +48,10 @@ spring:
           instagram:
             client-id: ${INSTAGRAM_CLIENT_ID}
             client-secret: ${INSTAGRAM_CLIENT_SECRET}
-            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            redirectUri: "{baseUrl}/login/oauth2/callback/{registrationId}"
             authorization-grant-type: authorization_code
             scope:
-              - email
+              - user_profile
           discord:
             client-id: ${DISCORD_CLIENT_ID}
             client-secret: ${DISCORD_CLIENT_SECRET}
