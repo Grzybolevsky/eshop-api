@@ -11,5 +11,5 @@
 
 ## E-business project - e-shop API
 ### Service is available [here](https://ebusiness-eshop-api.azurewebsites.net/)
-### Link: https://ebusiness-eshop-api.azurewebsites.net/
+### Link: [https://ebusiness-eshop-api.azurewebsites.net/]()
 ### [Dockerhub](https://hub.docker.com/repository/docker/grzybolevsky/eshop-api)

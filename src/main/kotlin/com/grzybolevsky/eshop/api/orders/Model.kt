@@ -12,6 +12,7 @@ import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.OneToOne
 import javax.persistence.Table
+import javax.validation.constraints.Positive
 
 @Entity
 @Table(name = "orders")
@@ -32,6 +33,7 @@ class OrderItem(
     var order: Order,
     @ManyToOne
     var product: Product,
+    @Positive
     var quantity: Int,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,6 +44,7 @@ fun OrderItem.toView() = OrderItemView(product.toView(), quantity)
 
 data class OrderItemView(
     val productView: ProductView,
+    @Positive
     val quantity: Int
 )
 

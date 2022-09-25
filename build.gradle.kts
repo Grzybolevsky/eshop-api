@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val javaVersion: String by project
 
 plugins {
-    id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    id("org.springframework.boot") version "2.7.4"
+    id("io.spring.dependency-management") version "1.0.14.RELEASE"
     id("com.github.ben-manes.versions") version "0.42.0"
     id("nl.littlerobots.version-catalog-update") version "0.6.1"
     id("com.diffplug.spotless") version "6.11.0"

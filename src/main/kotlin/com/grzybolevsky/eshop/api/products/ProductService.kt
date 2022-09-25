@@ -9,5 +9,6 @@ class ProductService(val repository: ProductRepository) {
     fun getProducts(): List<ProductView> = repository.findAll().map(Product::toView).toList()
 
     fun saveProduct(product: ProductView): ProductView = repository.save(product.toEntity()).toView()
+
     fun deleteProduct(productId: Long): ProductView = TODO("Not yet implemented")
 }
