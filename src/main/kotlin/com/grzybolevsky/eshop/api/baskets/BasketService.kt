@@ -6,6 +6,7 @@ import com.grzybolevsky.eshop.api.security.identity.IdentityService
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
+import javax.transaction.Transactional
 
 @Service
 class BasketService(
@@ -37,6 +38,7 @@ class BasketService(
         return basketProduct.toView()
     }
 
+    @Transactional
     fun empty(): List<BasketProductView> {
         basketProductRepository.deleteAllByUserId(identityService.getUser().id!!)
         return emptyList()
