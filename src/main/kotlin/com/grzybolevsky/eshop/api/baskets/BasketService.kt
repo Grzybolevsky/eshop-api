@@ -20,7 +20,13 @@ class BasketService(
 
     fun addProductToBasket(productId: Long): BasketProductView {
         val product = productService.getProduct(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
-        val basketProduct = BasketProduct(product.toEntity(), 1, identityService.getUser())
+        val user = identityService.getUser()
+        val basketProduct = basketProductRepository.findByIdAndUserId(productId, user.id!!) ?: BasketProduct(
+            product.toEntity(),
+            0,
+            identityService.getUser()
+        )
+        basketProduct.quantity += 1
         return basketProductRepository.save(basketProduct).toView()
     }
 

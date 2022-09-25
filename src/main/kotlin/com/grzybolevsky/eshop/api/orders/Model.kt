@@ -4,6 +4,8 @@ import com.grzybolevsky.eshop.api.products.Product
 import com.grzybolevsky.eshop.api.products.ProductView
 import com.grzybolevsky.eshop.api.products.toView
 import com.grzybolevsky.eshop.api.users.User
+import org.hibernate.annotations.OnDelete
+import org.hibernate.annotations.OnDeleteAction
 import java.time.Instant
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -32,6 +34,7 @@ class OrderItem(
     @ManyToOne
     var order: Order,
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     var product: Product,
     @Positive
     var quantity: Int,
