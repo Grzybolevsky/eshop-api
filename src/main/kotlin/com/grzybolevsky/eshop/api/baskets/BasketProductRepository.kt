@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository
 interface BasketProductRepository : JpaRepository<BasketProduct, Long> {
     fun findByIdAndUserId(id: Long, userId: Long): BasketProduct?
     fun findAllByUserId(userId: Long?): List<BasketProduct>
-    fun deleteAllByUserId(userId: Long)
+    fun deleteAllInBatchByUserId(userId: Long)
+    fun findByProductIdAndUserId(productId: Long, userId: Long): BasketProduct?
 }

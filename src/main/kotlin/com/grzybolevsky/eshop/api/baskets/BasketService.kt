@@ -16,21 +16,20 @@ class BasketService(
 ) {
     fun getBasket(): List<BasketProductView> = getBasketRaw().map(BasketProduct::toView)
 
-    fun getBasketRaw(): List<BasketProduct> =
-        basketProductRepository.findAllByUserId(identityService.getUser().id!!)
+    fun getBasketRaw(): List<BasketProduct> = basketProductRepository.findAllByUserId(identityService.getUser().id!!)
 
+    @Transactional
     fun addProductToBasket(productId: Long): BasketProductView {
         val product = productService.getProduct(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
         val user = identityService.getUser()
-        val basketProduct = basketProductRepository.findByIdAndUserId(productId, user.id!!) ?: BasketProduct(
-            product.toEntity(),
-            0,
-            identityService.getUser()
+        val basketProduct = basketProductRepository.findByProductIdAndUserId(productId, user.id!!) ?: BasketProduct(
+            product.toEntity(), 0, identityService.getUser()
         )
         basketProduct.quantity += 1
         return basketProductRepository.save(basketProduct).toView()
     }
 
+    @Transactional
     fun removeProductFromBasket(basketProductId: Long): BasketProductView {
         val basketProduct = basketProductRepository.findByIdAndUserId(basketProductId, identityService.getUser().id!!)
             ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
@@ -40,7 +39,7 @@ class BasketService(
 
     @Transactional
     fun empty(): List<BasketProductView> {
-        basketProductRepository.deleteAllByUserId(identityService.getUser().id!!)
+        basketProductRepository.deleteAllInBatchByUserId(identityService.getUser().id!!)
         return emptyList()
     }
 }
