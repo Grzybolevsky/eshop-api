@@ -28,7 +28,7 @@ class BasketProduct(
     var id: Long? = null
 )
 
-fun BasketProduct.toView() = BasketProductView(product.toView(), quantity, product.price, id)
+fun BasketProduct.toView() = BasketProductView(product.toView(), quantity, product.price.times(quantity.toBigDecimal()), id)
 
 data class BasketProductView(
     val product: ProductView,

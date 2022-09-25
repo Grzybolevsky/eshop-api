@@ -42,4 +42,16 @@ class BasketService(
         basketProductRepository.deleteAllInBatchByUserId(identityService.getUser().id!!)
         return emptyList()
     }
+
+    @Transactional
+    fun updateBasketProduct(basketProduct: BasketProductView): BasketProductView {
+        return basketProductRepository.save(
+            BasketProduct(
+                basketProduct.product.toEntity(),
+                basketProduct.quantity,
+                identityService.getUser(),
+                basketProduct.id
+            )
+        ).toView()
+    }
 }
