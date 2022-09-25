@@ -11,15 +11,15 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.ManyToOne
 import javax.persistence.Table
+import javax.validation.Valid
 import javax.validation.constraints.Positive
-import javax.validation.constraints.PositiveOrZero
 
 @Entity
 @Table(name = "basket_products")
 class BasketProduct(
     @ManyToOne
     var product: Product,
-    @Positive
+    @field:Positive @field:Valid
     var quantity: Int,
     @ManyToOne
     var user: User,
@@ -28,13 +28,14 @@ class BasketProduct(
     var id: Long? = null
 )
 
-fun BasketProduct.toView() = BasketProductView(product.toView(), quantity, product.price.times(quantity.toBigDecimal()), id)
+fun BasketProduct.toView() =
+    BasketProductView(product.toView(), quantity, product.price * quantity.toBigDecimal(), id)
 
 data class BasketProductView(
     val product: ProductView,
-    @Positive
+    @field:Positive
     val quantity: Int,
-    @PositiveOrZero
+    @field:Positive
     val totalPrice: BigDecimal,
     val id: Long?
 )

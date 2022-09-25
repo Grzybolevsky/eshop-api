@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/products")
@@ -21,7 +22,7 @@ class ProductsController(private val productService: ProductService) {
         productService.getProduct(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
 
     @PostMapping
-    fun createOrUpdate(@RequestBody productView: ProductView) =
+    fun createOrUpdate(@Valid @RequestBody productView: ProductView) =
         productService.saveProduct(productView)
 
     @DeleteMapping("/{productId}")

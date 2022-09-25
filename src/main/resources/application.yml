@@ -52,7 +52,6 @@ spring:
             authorization-grant-type: authorization_code
             scope:
               - email
-              - public_profile
           discord:
             client-id: ${DISCORD_CLIENT_ID}
             client-secret: ${DISCORD_CLIENT_SECRET}

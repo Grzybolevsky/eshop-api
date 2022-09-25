@@ -6,15 +6,17 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
+import javax.validation.constraints.NotBlank
 import javax.validation.constraints.PositiveOrZero
 
 @Entity
 @Table(name = "products")
 class Product(
+    @field:NotBlank
     var name: String,
     var category: String,
     var description: String,
-    @PositiveOrZero
+    @field:PositiveOrZero
     var price: BigDecimal,
     val imageUrl: String,
     @Id
@@ -24,14 +26,15 @@ class Product(
 
 fun Product.toView() = ProductView(name, category, description, price, imageUrl, id)
 
-class ProductView(
-    var name: String,
-    var category: String,
-    var description: String,
-    @PositiveOrZero
-    var price: BigDecimal,
+data class ProductView(
+    @field:NotBlank
+    val name: String,
+    val category: String,
+    val description: String,
+    @field:PositiveOrZero
+    val price: BigDecimal,
     val imageUrl: String,
-    var id: Long?
+    val id: Long?
 )
 
 fun ProductView.toEntity() = Product(name, category, description, price, imageUrl, id)
