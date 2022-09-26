@@ -40,6 +40,7 @@ val snippetsDir by extra { file("build/generated-snippets") }
 
 dependencies {
     implementation(libs.postgres)
+    implementation(libs.stripe)
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.spring) { exclude(group = "org.apache.logging.log4j") }
 

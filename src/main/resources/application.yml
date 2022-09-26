@@ -9,6 +9,8 @@ server:
 app:
   clientUrl: ${CLIENT_URL:http://localhost:3000}
   corsOrigins: ${CORS_ORIGINS:default}
+  stripe: ${STRIPE_SECRET_KEY}
+
 spring:
   profiles:
     active: security

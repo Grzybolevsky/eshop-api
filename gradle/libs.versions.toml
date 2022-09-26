@@ -19,6 +19,7 @@ spring-test-starter = { module = "org.springframework.boot:spring-boot-starter-t
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 springdoc = "org.springdoc:springdoc-openapi-ui:1.6.11"
+stripe = "com.stripe:stripe-java:21.9.0"
 testcontainers = { module = "org.testcontainers:junit-jupiter" }
 
 [bundles]

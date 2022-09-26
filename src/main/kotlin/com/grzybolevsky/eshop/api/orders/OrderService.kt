@@ -1,6 +1,7 @@
 package com.grzybolevsky.eshop.api.orders
 
 import com.grzybolevsky.eshop.api.baskets.BasketService
+import com.grzybolevsky.eshop.api.payments.PaymentsService
 import com.grzybolevsky.eshop.api.security.identity.IdentityService
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
@@ -10,7 +11,8 @@ class OrderService(
     private val orderRepository: OrderRepository,
     private val orderItemRepository: OrderItemRepository,
     private val basketService: BasketService,
-    private val identityService: IdentityService
+    private val identityService: IdentityService,
+    private val paymentsService: PaymentsService
 ) {
     fun getOrder(orderId: Long): OrderView? = getOrderRaw(orderId)?.toView()
 
@@ -25,7 +27,9 @@ class OrderService(
 
     @Transactional
     fun createOrder(): OrderView {
-        val order = Order(identityService.getUser(), false)
+        val orderPrice = basketService.getBasket().sumOf { it.totalPrice }
+        val paymentLink = paymentsService.getPaymentlink(orderPrice)
+        val order = Order(identityService.getUser(), false, paymentLink)
         orderRepository.save(order)
         val orderItems = basketService.getBasketRaw().map { OrderItem(order, it.product, it.quantity) }
         orderItemRepository.saveAll(orderItems)
