@@ -13,12 +13,13 @@ import javax.validation.constraints.PositiveOrZero
 @Table(name = "products")
 class Product(
     @field:NotBlank
-    var name: String,
-    var category: String,
-    var description: String,
+    val name: String,
+    val category: String,
+    val description: String,
     @field:PositiveOrZero
-    var price: BigDecimal,
+    val price: BigDecimal,
     val imageUrl: String,
+    var active: Boolean = true,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
@@ -37,4 +38,4 @@ data class ProductView(
     val id: Long?
 )
 
-fun ProductView.toEntity() = Product(name, category, description, price, imageUrl, id)
+fun ProductView.toEntity() = Product(name, category, description, price, imageUrl, true, id)

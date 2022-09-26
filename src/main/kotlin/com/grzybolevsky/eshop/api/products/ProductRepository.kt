@@ -3,5 +3,6 @@ package com.grzybolevsky.eshop.api.products
 import org.springframework.data.repository.CrudRepository
 
 interface ProductRepository : CrudRepository<Product, Long> {
-    fun findProductById(productId: Long): Product?
+    fun findProductByIdAndActiveIsTrue(productId: Long): Product?
+    fun findAllByActiveIsTrue(): List<Product>
 }
