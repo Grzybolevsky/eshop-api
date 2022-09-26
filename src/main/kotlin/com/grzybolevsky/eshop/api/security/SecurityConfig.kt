@@ -32,6 +32,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
             authorizeRequests {
                 authorize("/products", permitAll)
                 authorize("/user/logged", permitAll)
+                authorize("/login/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
             logout {
