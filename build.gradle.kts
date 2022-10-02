@@ -10,11 +10,11 @@ plugins {
     id("com.diffplug.spotless") version "6.11.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0-RC1"
     id("com.google.cloud.tools.jib") version "3.3.0"
-    kotlin("jvm") version "1.7.20-RC"
-    kotlin("plugin.spring") version "1.7.20-RC"
-    kotlin("plugin.jpa") version "1.7.20-RC"
-    kotlin("plugin.allopen") version "1.7.20-RC"
-    kotlin("plugin.serialization") version "1.7.20-RC"
+    kotlin("jvm") version "1.7.20"
+    kotlin("plugin.spring") version "1.7.20"
+    kotlin("plugin.jpa") version "1.7.20"
+    kotlin("plugin.allopen") version "1.7.20"
+    kotlin("plugin.serialization") version "1.7.20"
 }
 
 group = "com.grzybolevsky"
