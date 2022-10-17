@@ -6,7 +6,7 @@ plugins {
     id("org.springframework.boot") version "2.7.4"
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     id("com.github.ben-manes.versions") version "0.42.0"
-    id("nl.littlerobots.version-catalog-update") version "0.6.1"
+    id("nl.littlerobots.version-catalog-update") version "0.7.0"
     id("com.diffplug.spotless") version "6.11.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0-RC1"
     id("com.google.cloud.tools.jib") version "3.3.0"
