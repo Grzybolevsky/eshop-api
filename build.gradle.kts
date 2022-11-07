@@ -8,7 +8,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.42.0"
     id("nl.littlerobots.version-catalog-update") version "0.7.0"
     id("com.diffplug.spotless") version "6.11.0"
-    id("io.gitlab.arturbosch.detekt") version "1.22.0-RC2"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0-RC3"
     id("com.google.cloud.tools.jib") version "3.3.0"
     kotlin("jvm") version "1.7.20"
     kotlin("plugin.spring") version "1.7.20"
