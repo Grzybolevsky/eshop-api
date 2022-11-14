@@ -3,18 +3,18 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val javaVersion: String by project
 
 plugins {
-    id("org.springframework.boot") version "2.7.4"
-    id("io.spring.dependency-management") version "1.0.14.RELEASE"
-    id("com.github.ben-manes.versions") version "0.42.0"
+    id("org.springframework.boot") version "2.7.5"
+    id("io.spring.dependency-management") version "1.1.0"
+    id("com.github.ben-manes.versions") version "0.44.0"
     id("nl.littlerobots.version-catalog-update") version "0.7.0"
     id("com.diffplug.spotless") version "6.11.0"
-    id("io.gitlab.arturbosch.detekt") version "1.22.0-RC2"
-    id("com.google.cloud.tools.jib") version "3.3.0"
-    kotlin("jvm") version "1.7.20"
-    kotlin("plugin.spring") version "1.7.20"
-    kotlin("plugin.jpa") version "1.7.20"
-    kotlin("plugin.allopen") version "1.7.20"
-    kotlin("plugin.serialization") version "1.7.20"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0-RC3"
+    id("com.google.cloud.tools.jib") version "3.3.1"
+    kotlin("jvm") version "1.7.21"
+    kotlin("plugin.spring") version "1.7.21"
+    kotlin("plugin.jpa") version "1.7.21"
+    kotlin("plugin.allopen") version "1.7.21"
+    kotlin("plugin.serialization") version "1.7.21"
 }
 
 group = "com.grzybolevsky"
@@ -79,7 +79,7 @@ tasks.test {
 
 jib {
     from {
-        image = "eclipse-temurin:18.0.2.1_1-jre-jammy"
+        image = "eclipse-temurin:19.0.1_10-jre-jammy"
     }
     container {
         mainClass = "com.grzybolevsky.eshop.ApplicationKt"
