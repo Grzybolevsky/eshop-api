@@ -1,9 +1,9 @@
 package com.grzybolevsky.eshop.api.products
 
+import jakarta.transaction.Transactional
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
-import javax.transaction.Transactional
 
 @Service
 class ProductService(val repository: ProductRepository) {
@@ -16,7 +16,8 @@ class ProductService(val repository: ProductRepository) {
 
     @Transactional
     fun deleteProduct(productId: Long): Product {
-        val product = repository.findProductByIdAndActiveIsTrue(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
+        val product =
+            repository.findProductByIdAndActiveIsTrue(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
         product.active = false
         return repository.save(product)
     }

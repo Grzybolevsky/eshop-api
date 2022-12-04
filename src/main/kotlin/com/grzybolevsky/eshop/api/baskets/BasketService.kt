@@ -3,10 +3,10 @@ package com.grzybolevsky.eshop.api.baskets
 import com.grzybolevsky.eshop.api.products.ProductService
 import com.grzybolevsky.eshop.api.products.toEntity
 import com.grzybolevsky.eshop.api.security.identity.IdentityService
+import jakarta.transaction.Transactional
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
-import javax.transaction.Transactional
 
 @Service
 class BasketService(
@@ -23,7 +23,9 @@ class BasketService(
         val product = productService.getProduct(productId) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
         val user = identityService.getUser()
         val basketProduct = basketProductRepository.findByProductIdAndUserId(productId, user.id!!) ?: BasketProduct(
-            product.toEntity(), 0, identityService.getUser()
+            product.toEntity(),
+            0,
+            identityService.getUser()
         )
         basketProduct.quantity += 1
         return basketProductRepository.save(basketProduct).toView()

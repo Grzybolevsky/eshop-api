@@ -3,8 +3,8 @@ package com.grzybolevsky.eshop.api.orders
 import com.grzybolevsky.eshop.api.baskets.BasketService
 import com.grzybolevsky.eshop.api.payments.PaymentsService
 import com.grzybolevsky.eshop.api.security.identity.IdentityService
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
-import javax.transaction.Transactional
 
 @Service
 class OrderService(

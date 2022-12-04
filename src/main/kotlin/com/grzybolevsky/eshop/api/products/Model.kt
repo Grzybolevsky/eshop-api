@@ -1,14 +1,15 @@
 package com.grzybolevsky.eshop.api.products
 
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.PositiveOrZero
 import java.math.BigDecimal
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.PositiveOrZero
 
+@Suppress("LongParameterList")
 @Entity
 @Table(name = "products")
 class Product(

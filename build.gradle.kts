@@ -10,11 +10,11 @@ plugins {
     id("com.diffplug.spotless") version "6.12.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("com.google.cloud.tools.jib") version "3.3.1"
-    kotlin("jvm") version "1.7.21"
-    kotlin("plugin.spring") version "1.7.21"
-    kotlin("plugin.jpa") version "1.7.21"
-    kotlin("plugin.allopen") version "1.7.21"
-    kotlin("plugin.serialization") version "1.7.21"
+    kotlin("jvm") version "1.8.0-Beta"
+    kotlin("plugin.spring") version "1.8.0-Beta"
+    kotlin("plugin.jpa") version "1.8.0-Beta"
+    kotlin("plugin.allopen") version "1.8.0-Beta"
+    kotlin("plugin.serialization") version "1.8.0-Beta"
 }
 
 group = "com.grzybolevsky"
@@ -94,7 +94,7 @@ spotless {
 }
 
 allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.Embeddable")
-    annotation("javax.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.Embeddable")
+    annotation("jakarta.persistence.MappedSuperclass")
 }

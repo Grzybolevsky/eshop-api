@@ -1,11 +1,11 @@
 package com.grzybolevsky.eshop.api.users
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.OneToOne
-import javax.persistence.Table
-import javax.validation.constraints.Email
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.Id
+import jakarta.persistence.OneToOne
+import jakarta.persistence.Table
+import jakarta.validation.constraints.Email
 
 @Entity
 @Table(name = "users")

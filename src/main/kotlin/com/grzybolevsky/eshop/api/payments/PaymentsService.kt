@@ -11,16 +11,17 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
-
 @Service
 class PaymentsService {
+    private final val multiplyByTen = 10.toBigDecimal()
+
     @Value("\${app.stripe:}")
     private val stripeApiKey: String = ""
 
     fun getPaymentlink(totalValue: BigDecimal): String {
         Stripe.apiKey = stripeApiKey
 
-        val extractedPrice = (totalValue * (10).toBigDecimal()).toLong()
+        val extractedPrice = (totalValue * multiplyByTen).toLong()
 
         val productParams = ProductCreateParams.builder()
             .setName("Order price")

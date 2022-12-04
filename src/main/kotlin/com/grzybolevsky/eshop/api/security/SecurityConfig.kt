@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import org.springframework.http.HttpStatus
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.web.servlet.invoke
+import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.HttpStatusEntryPoint
@@ -27,7 +27,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
             cors { }
             csrf {
                 disable()
-                //csrfTokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse()
+                // csrfTokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse()
             }
             authorizeRequests {
                 authorize("/products", permitAll)
@@ -37,6 +37,7 @@ class SecurityConfig(private val oAuth2UserRegistrationService: OAuth2UserRegist
             }
             logout {
                 logoutUrl = "/auth/logout"
+
                 logoutSuccessUrl = clientUrl
                 invalidateHttpSession = true
                 deleteCookies("JSESSIONID")
