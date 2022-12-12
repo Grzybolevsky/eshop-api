@@ -11,7 +11,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("com.google.cloud.tools.jib") version "3.3.1"
     kotlin("jvm") version "1.8.0-Beta"
-    kotlin("plugin.spring") version "1.8.0-Beta"
+    kotlin("plugin.spring") version "1.8.0-RC"
     kotlin("plugin.jpa") version "1.8.0-Beta"
     kotlin("plugin.allopen") version "1.8.0-Beta"
     kotlin("plugin.serialization") version "1.8.0-Beta"
