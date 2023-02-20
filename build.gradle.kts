@@ -13,7 +13,7 @@ plugins {
     kotlin("jvm") version "1.8.0-Beta"
     kotlin("plugin.spring") version "1.8.20-Beta"
     kotlin("plugin.jpa") version "1.8.20-Beta"
-    kotlin("plugin.allopen") version "1.8.0-Beta"
+    kotlin("plugin.allopen") version "1.8.20-Beta"
     kotlin("plugin.serialization") version "1.8.20-Beta"
 }
 
