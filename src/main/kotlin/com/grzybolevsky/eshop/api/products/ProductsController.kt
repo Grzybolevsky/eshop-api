@@ -24,7 +24,7 @@ class ProductsController(private val productService: ProductService) {
     @PostMapping
     fun createOrUpdate(
         @Valid @RequestBody
-        productView: ProductView
+        productView: ProductView,
     ) =
         productService.saveProduct(productView)
 

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service
 class OAuth2UserRegistrationService(
     private val userRepository: UserRepository,
     private val userDetailsRepository: UserDetailsRepository,
-    private val identityService: IdentityService
+    private val identityService: IdentityService,
 ) : DefaultOAuth2UserService() {
     override fun loadUser(userRequest: OAuth2UserRequest?): OAuth2User {
         val user = super.loadUser(userRequest)

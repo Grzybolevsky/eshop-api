@@ -18,13 +18,13 @@ class UserController(private val userService: UserService) {
     @PutMapping("/details")
     fun updateUserDetails(
         @Valid @RequestBody
-        userDetailsView: UserDetailsView
+        userDetailsView: UserDetailsView,
     ) =
         userService.updateUserDetails(userDetailsView)
 
     @PutMapping("/{email}")
     fun updateUserEmail(
         @Valid @Email @PathVariable
-        email: String
+        email: String,
     ) = userService.updateUserEmail(email)
 }

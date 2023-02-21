@@ -24,7 +24,7 @@ class Order(
     var createdAt: Instant = Instant.now(),
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
+    var id: Long? = null,
 )
 
 fun Order.toView() = OrderView(isPaid, paymentLink, createdAt, id)
@@ -39,7 +39,7 @@ class OrderItem(
     var quantity: Int,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
+    var id: Long? = null,
 )
 
 fun OrderItem.toView() = OrderItemView(product.toView(), quantity)
@@ -47,12 +47,12 @@ fun OrderItem.toView() = OrderItemView(product.toView(), quantity)
 data class OrderItemView(
     val productView: ProductView,
     @Positive
-    val quantity: Int
+    val quantity: Int,
 )
 
 data class OrderView(
     val isPaid: Boolean,
     val paymentLink: String,
     val createdAt: Instant,
-    val id: Long?
+    val id: Long?,
 )

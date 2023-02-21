@@ -12,7 +12,7 @@ class OrderService(
     private val orderItemRepository: OrderItemRepository,
     private val basketService: BasketService,
     private val identityService: IdentityService,
-    private val paymentsService: PaymentsService
+    private val paymentsService: PaymentsService,
 ) {
     fun getOrder(orderId: Long): OrderView? = getOrderRaw(orderId)?.toView()
 

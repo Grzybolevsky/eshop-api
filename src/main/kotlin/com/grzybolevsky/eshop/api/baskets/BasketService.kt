@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException
 class BasketService(
     private val basketProductRepository: BasketProductRepository,
     private val productService: ProductService,
-    private val identityService: IdentityService
+    private val identityService: IdentityService,
 ) {
     fun getBasket(): List<BasketProductView> = getBasketRaw().map(BasketProduct::toView)
 
@@ -25,7 +25,7 @@ class BasketService(
         val basketProduct = basketProductRepository.findByProductIdAndUserId(productId, user.id!!) ?: BasketProduct(
             product.toEntity(),
             0,
-            identityService.getUser()
+            identityService.getUser(),
         )
         basketProduct.quantity += 1
         return basketProductRepository.save(basketProduct).toView()
@@ -52,8 +52,8 @@ class BasketService(
                 basketProduct.product.toEntity(),
                 basketProduct.quantity,
                 identityService.getUser(),
-                basketProduct.id
-            )
+                basketProduct.id,
+            ),
         ).toView()
     }
 }

@@ -1,13 +1,13 @@
 [libraries]
 h2 = "com.h2database:h2:2.1.214"
-junit = "org.junit.jupiter:junit-jupiter-api:5.9.1"
+junit = "org.junit.jupiter:junit-jupiter-api:5.9.2"
 kotlin-collections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
-kotlin-jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:2.14.1"
-kotlin-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+kotlin-jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2"
+kotlin-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC"
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
-postgres = "org.postgresql:postgresql:42.5.1"
+postgres = "org.postgresql:postgresql:42.5.4"
 spring-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
 spring-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 spring-mail = { module = "org.springframework.boot:spring-boot-starter-mail" }
@@ -18,8 +18,8 @@ spring-test-security = { module = "org.springframework.security:spring-security-
 spring-test-starter = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
 spring-web = { module = "org.springframework.boot:spring-boot-starter-web" }
-springdoc = "org.springdoc:springdoc-openapi-ui:1.6.13"
-stripe = "com.stripe:stripe-java:22.1.0"
+springdoc = "org.springdoc:springdoc-openapi-ui:1.6.14"
+stripe = "com.stripe:stripe-java:22.10.0-beta.1"
 testcontainers = { module = "org.testcontainers:junit-jupiter" }
 
 [bundles]

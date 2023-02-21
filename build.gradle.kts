@@ -3,11 +3,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val javaVersion: String by project
 
 plugins {
-    id("org.springframework.boot") version "3.0.0"
+    id("org.springframework.boot") version "3.0.2"
     id("io.spring.dependency-management") version "1.1.0"
-    id("com.github.ben-manes.versions") version "0.44.0"
+    id("com.github.ben-manes.versions") version "0.46.0"
     id("nl.littlerobots.version-catalog-update") version "0.7.0"
-    id("com.diffplug.spotless") version "6.12.0"
+    id("com.diffplug.spotless") version "6.15.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("com.google.cloud.tools.jib") version "3.3.1"
     kotlin("jvm") version "1.8.20-Beta"
@@ -79,7 +79,7 @@ tasks.test {
 
 jib {
     from {
-        image = "eclipse-temurin:19.0.1_10-jre-jammy"
+        image = "eclipse-temurin:19-jre-jammy"
     }
     container {
         mainClass = "com.grzybolevsky.eshop.ApplicationKt"

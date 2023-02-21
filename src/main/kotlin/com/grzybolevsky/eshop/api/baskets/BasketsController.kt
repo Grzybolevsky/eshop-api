@@ -26,7 +26,7 @@ class BasketsController(private val basketService: BasketService) {
     @PutMapping
     fun udpateProduct(
         @Valid @RequestBody
-        basketProduct: BasketProductView
+        basketProduct: BasketProductView,
     ): BasketProductView =
         basketService.updateBasketProduct(basketProduct)
 

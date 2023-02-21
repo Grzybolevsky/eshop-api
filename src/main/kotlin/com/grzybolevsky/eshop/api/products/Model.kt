@@ -23,7 +23,7 @@ class Product(
     var active: Boolean = true,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
+    var id: Long? = null,
 )
 
 fun Product.toView() = ProductView(name, category, description, price, imageUrl, id)
@@ -36,7 +36,7 @@ data class ProductView(
     @field:PositiveOrZero
     val price: BigDecimal,
     val imageUrl: String,
-    val id: Long?
+    val id: Long?,
 )
 
 fun ProductView.toEntity() = Product(name, category, description, price, imageUrl, true, id)

@@ -17,11 +17,11 @@ fun getGithubUserEmail(request: OAuth2UserRequest?): String {
             .version(HttpClient.Version.HTTP_2)
             .header(
                 "Authorization",
-                "token ${request?.accessToken?.tokenValue}"
+                "token ${request?.accessToken?.tokenValue}",
             )
             .GET()
             .build(),
-        BodyHandlers.ofString()
+        BodyHandlers.ofString(),
     ).body()
     return Json.parseToJsonElement(responseBody).jsonArray[0].jsonObject["email"]!!.jsonPrimitive.content
 }

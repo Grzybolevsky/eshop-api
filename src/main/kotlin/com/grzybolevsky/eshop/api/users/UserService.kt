@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 class UserService(
     private val userRepository: UserRepository,
     private val userDetailsRepository: UserDetailsRepository,
-    private val identityService: IdentityService
+    private val identityService: IdentityService,
 ) {
     fun isLogged() = !identityService.isNotSet
 

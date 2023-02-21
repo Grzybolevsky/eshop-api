@@ -25,7 +25,7 @@ class BasketProduct(
     var user: User,
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long? = null
+    var id: Long? = null,
 )
 
 fun BasketProduct.toView() =
@@ -37,5 +37,5 @@ data class BasketProductView(
     val quantity: Int,
     @field:Positive
     val totalPrice: BigDecimal,
-    val id: Long?
+    val id: Long?,
 )

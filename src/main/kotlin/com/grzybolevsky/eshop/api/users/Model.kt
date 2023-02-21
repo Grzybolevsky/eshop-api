@@ -16,7 +16,7 @@ class User(
     var details: UserDetails = UserDetails(),
     @Id
     @GeneratedValue
-    var id: Long? = null
+    var id: Long? = null,
 )
 
 fun User.toView() = UserView(email, details.toView())
@@ -33,14 +33,14 @@ class UserDetails(
     var phone: String = "",
     @Id
     @GeneratedValue
-    var id: Long? = null
+    var id: Long? = null,
 )
 
 fun UserDetails.toView() = UserDetailsView(firstName, secondName, address, city, country, postCode, phone)
 
 data class UserView(
     val email: String,
-    val userDetails: UserDetailsView
+    val userDetails: UserDetailsView,
 )
 
 data class UserDetailsView(
@@ -50,5 +50,5 @@ data class UserDetailsView(
     val city: String,
     val country: String,
     val postCode: String,
-    val phone: String
+    val phone: String,
 )

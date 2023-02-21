@@ -38,7 +38,7 @@ class PaymentsService {
                 PriceCreateParams.Recurring
                     .builder()
                     .setInterval(PriceCreateParams.Recurring.Interval.MONTH)
-                    .build()
+                    .build(),
             )
             .build()
         val price = Price.create(priceParams)
@@ -50,7 +50,7 @@ class PaymentsService {
                     .builder()
                     .setPrice(price.id)
                     .setQuantity(1L)
-                    .build()
+                    .build(),
             )
             .build()
 
