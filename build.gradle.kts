@@ -7,7 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     id("com.github.ben-manes.versions") version "0.46.0"
     id("nl.littlerobots.version-catalog-update") version "0.7.0"
-    id("com.diffplug.spotless") version "6.15.0"
+    id("com.diffplug.spotless") version "6.16.0"
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("com.google.cloud.tools.jib") version "3.3.1"
     kotlin("jvm") version "1.8.20-Beta"
