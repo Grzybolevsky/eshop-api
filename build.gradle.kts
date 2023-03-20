@@ -12,7 +12,7 @@ plugins {
     id("com.google.cloud.tools.jib") version "3.3.1"
     kotlin("jvm") version "1.8.20-Beta"
     kotlin("plugin.spring") version "1.8.20-Beta"
-    kotlin("plugin.jpa") version "1.8.20-Beta"
+    kotlin("plugin.jpa") version "1.8.20-RC"
     kotlin("plugin.allopen") version "1.8.20-Beta"
     kotlin("plugin.serialization") version "1.8.20-Beta"
 }
