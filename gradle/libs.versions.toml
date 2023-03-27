@@ -4,7 +4,7 @@ junit = "org.junit.jupiter:junit-jupiter-api:5.9.2"
 kotlin-collections = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
 kotlin-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 kotlin-jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2"
-kotlin-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC"
+kotlin-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 postgres = "org.postgresql:postgresql:42.5.4"
