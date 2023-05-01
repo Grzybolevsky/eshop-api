@@ -25,7 +25,7 @@ jobs:
           cache: "gradle"
 
       - name: Test
-        uses: gradle/gradle-build-action@v2.4.0
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: test
           gradle-version: 8.0.1
@@ -38,7 +38,7 @@ jobs:
           password: ${{ secrets.AzureAppService_ContainerPassword_6f3543abd1ab4c81bf562e2ffbd6d9a8 }}
 
       - name: Build Docker Image with Gradle/Jib
-        uses: gradle/gradle-build-action@v2.4.0
+        uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: jib --image=${{ secrets.AzureAppService_ContainerUsername_2a9cc39d179c40c8a82555812d4a7da7 }}/eshop-api:${{ github.sha }}
           gradle-version: 8.0.1
